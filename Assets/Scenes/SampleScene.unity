@@ -257,14 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816b289ef451e094f9ae174fb4cf8db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
-  m_CameraManager: {fileID: 0}
-  m_OcclusionManager: {fileID: 0}
   m_UseCustomMaterial: 0
   m_CustomMaterial: {fileID: 0}
-  m_DefaultMaterial: {fileID: 0}
-  m_BackgroundRenderingEnabled: 0
-  m_CommandBufferCullingState: 0
 --- !u!114 &559566978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +276,6 @@ MonoBehaviour:
   m_AutoFocus: 0
   m_LightEstimation: 0
   m_FacingDirection: 1
-  m_Camera: {fileID: 0}
-  m_PreRenderInvertCullingValue: 0
 --- !u!114 &559566979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <sessionOrigin>k__BackingField: {fileID: 0}
   m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
 --- !u!114 &605435690
@@ -356,7 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <sessionOrigin>k__BackingField: {fileID: 0}
   m_RaycastPrefab: {fileID: 0}
 --- !u!114 &605435691
 MonoBehaviour:
@@ -371,8 +361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 559566976}
-  <trackablesParent>k__BackingField: {fileID: 0}
-  m_ContentOffsetGameObject: {fileID: 0}
 --- !u!4 &605435692
 Transform:
   m_ObjectHideFlags: 0
@@ -543,12 +531,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arObjectToSpawn: {fileID: 8032395058287267274, guid: 3bcff9ef5ae77cd49a1b1c0387fd32bb, type: 3}
   placementIndicator: {fileID: 1196246695}
-  spawnedObject: {fileID: 0}
-  PlacementPose:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
-  aRRaycastManager: {fileID: 0}
-  placementPoseIsValid: 0
 --- !u!4 &1510333820
 Transform:
   m_ObjectHideFlags: 0
