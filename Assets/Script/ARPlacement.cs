@@ -4,67 +4,70 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-namespace ARPlacement { 
-public class ARPlacement : MonoBehaviour
+namespace ARPlacement
 {
-
-    public GameObject arObjectToSpawn;
-    public GameObject placementIndicator;
-    private GameObject spawnedObject;
-    private Pose PlacementPose;
-    private ARRaycastManager aRRaycastManager;
-    private bool placementPoseIsValid = false;
-
-    void Start()
+    public class ARPlacement : MonoBehaviour
     {
-        aRRaycastManager = FindObjectOfType<ARRaycastManager>();
-    }
 
-    // need to update placement indicator, placement pose and spawn 
-    void Update()
-    {
-        if (spawnedObject == null && placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        public GameObject arObjectToSpawn;
+        public GameObject placementIndicator;
+        public GameObject joystickCanvas;
+        private GameObject spawnedObject;
+        private Pose PlacementPose;
+        private ARRaycastManager aRRaycastManager;
+        private bool placementPoseIsValid = false;
+
+        void Start()
         {
-            ARPlaceObject();
+            aRRaycastManager = FindObjectOfType<ARRaycastManager>();
+            joystickCanvas.SetActive(false);
         }
 
-
-        UpdatePlacementPose();
-        UpdatePlacementIndicator();
-
-
-    }
-    void UpdatePlacementIndicator()
-    {
-        if (spawnedObject == null && placementPoseIsValid)
+        // need to update placement indicator, placement pose and spawn 
+        void Update()
         {
-            placementIndicator.SetActive(true);
-            placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
+            if (spawnedObject == null && placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                ARPlaceObject();
+                joystickCanvas.SetActive(true);
+            }
+
+
+            UpdatePlacementPose();
+            UpdatePlacementIndicator();
+
+
         }
-        else
+        void UpdatePlacementIndicator()
         {
-            placementIndicator.SetActive(false);
+            if (spawnedObject == null && placementPoseIsValid)
+            {
+                placementIndicator.SetActive(true);
+                placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
+            }
+            else
+            {
+                placementIndicator.SetActive(false);
+            }
         }
-    }
 
-    void UpdatePlacementPose()
-    {
-        var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
-        var hits = new List<ARRaycastHit>();
-        aRRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
-
-        placementPoseIsValid = hits.Count > 0;
-        if (placementPoseIsValid)
+        void UpdatePlacementPose()
         {
-            PlacementPose = hits[0].pose;
+            var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+            var hits = new List<ARRaycastHit>();
+            aRRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
+
+            placementPoseIsValid = hits.Count > 0;
+            if (placementPoseIsValid)
+            {
+                PlacementPose = hits[0].pose;
+            }
         }
+
+        void ARPlaceObject()
+        {
+            spawnedObject = Instantiate(arObjectToSpawn, PlacementPose.position, PlacementPose.rotation);
+        }
+
     }
-
-    void ARPlaceObject()
-    {
-        spawnedObject = Instantiate(arObjectToSpawn, PlacementPose.position, PlacementPose.rotation);
-    }
-
-
-}
 }
